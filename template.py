@@ -289,7 +289,37 @@ def streaming_chatbot() -> None:
         - Cắt history còn 3 lượt cuối (6 message): history = history[-6:]
     """
     # TODO: vòng lặp while, đọc input, stream phản hồi, duy trì history
-    raise NotImplementedError("Implement streaming_chatbot")
+    from openai import OpenAI
+
+    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    history = []
+
+    while True:
+        try:
+            user_msg = input("Bạn: ")
+        except (EOFError, KeyboardInterrupt):
+            break
+
+        if user_msg.strip().lower() in ("quit", "exit"):
+            break
+
+        messages = history + [{"role": "user", "content": user_msg}]
+        stream = client.chat.completions.create(
+            model=OPENAI_MODEL,
+            messages=messages,
+            stream=True,
+        )
+
+        reply = ""
+        for chunk in stream:
+            delta = chunk.choices[0].delta.content or ""
+            print(delta, end="", flush=True)
+            reply += delta
+        print()
+
+        history.append({"role": "user", "content": user_msg})
+        history.append({"role": "assistant", "content": reply})
+        history = history[-6:]
 
 
 # ---------------------------------------------------------------------------
@@ -316,7 +346,13 @@ def retry_with_backoff(
         Exception cuối cùng của fn() sau khi hết số lần thử.
     """
     # TODO: vòng lặp retry với exponential backoff
-    raise NotImplementedError("Implement retry_with_backoff")
+    for attempt in range(max_retries + 1):
+        try:
+            return fn()
+        except Exception:
+            if attempt == max_retries:
+                raise
+            time.sleep(base_delay * (2 ** attempt))
 
 
 # ===========================================================================
