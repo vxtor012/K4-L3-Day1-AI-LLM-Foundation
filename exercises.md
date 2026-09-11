@@ -41,7 +41,7 @@ Gọi `chat_with_system_prompt` hai lần với cùng câu hỏi
 
 **Hai phản hồi khác nhau như thế nào (độ dài, từ vựng, ví dụ)? System prompt
 ảnh hưởng đến hành vi model ra sao?** (3–4 câu)
-> *Câu trả lời của bạn*
+> phản hồi mà có system prompt là giáo viên tiểu học có độ dài ngắn hơn 1 nửa, sử dụng bộ từ vựng dễ hiểu gần gũi với trẻ em như ví dụ về câu chuyện "cuốn sổ ma thuật". còn với system chuyên gia thì giải thích chi tiết, cặn kẽ hơn, sử dụng các từ ngữ chuyên sâu, từ khóa chính xác như proof of work, consensus mechanisms.
 
 ### Câu 2.2 — tiktoken vs đếm từ
 Chọn một đoạn văn tiếng Việt ~100 từ. So sánh số token theo `count_tokens`
@@ -49,8 +49,7 @@ Chọn một đoạn văn tiếng Việt ~100 từ. So sánh số token theo `co
 
 **Hai con số chênh nhau bao nhiêu phần trăm? Vì sao tiếng Việt thường tốn
 nhiều token hơn tiếng Anh cùng độ dài?**
-> *Câu trả lời của bạn*
-
+> Theo ước lượng ở part 1 của em với đoạn văn độ dài 100 từ thì tốn 135 token. còn dùng tiktoken với gpt-4o thì tính ra 158 token. Tiếng việt thường tốn token hơn tiếng anh nếu cùng độ dài là do tiếng việt còn các dấu câu cũng tính là token.
 ---
 
 ## Block 3 — Streaming & Độ Bền (trả lời sau Checkpoint 3)
