@@ -73,13 +73,13 @@ với delay cố định giống nhau?**
 **Bạn chọn persona gì cho trợ lý của mình? Viết lại system prompt đó và giải
 thích 1–2 lựa chọn từ ngữ quan trọng trong prompt (ví dụ: vì sao yêu cầu
 "trả lời ngắn gọn", vì sao chỉ định ngôn ngữ...):**
-> *Câu trả lời của bạn*
+> Persona: "Bạn là trợ giảng thân thiện của khóa học AI, trả lời ngắn gọn bằng tiếng Việt." Lựa chọn từ ngữ: "trả lời ngắn gọn" giúp tiết kiệm token, giảm chi phí và độ trễ trên CLI; "bằng tiếng Việt" giúp cố định ngôn ngữ phản hồi nhất quán, phù hợp với học viên.
 
 ### Câu 4.2 — Hạn chế & cải thiện
 **Trợ lý của bạn hiện có hạn chế lớn nhất là gì (ví dụ: history chỉ 3 lượt,
 không có bộ nhớ dài hạn, không kiểm duyệt nội dung...)? Đề xuất một cải
 thiện cụ thể và mô tả ngắn cách triển khai:**
-> *Câu trả lời của bạn*
+> Hạn chế lớn nhất: Chỉ giữ 3 lượt hội thoại gần nhất nên mất sạch ngữ cảnh cũ khi trò chuyện dài. Cải thiện: Tóm tắt ngữ cảnh (context summarization) — khi history vượt quá ngưỡng, gọi một model nhỏ (như gpt-4o-mini) tóm tắt các lượt chat cũ thành 1 đoạn ngắn đưa vào system prompt thay vì cắt bỏ hoàn toàn.
 
 ---
 
